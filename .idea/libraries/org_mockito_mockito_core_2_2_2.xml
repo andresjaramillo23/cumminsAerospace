@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="org.mockito:mockito-core:2.2.2" type="repository">
+    <properties maven-id="org.hamcrest:hamcrest-core:2.1" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/hamcrest-core-2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/hamcrest-2.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
