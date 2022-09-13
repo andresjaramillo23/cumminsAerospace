@@ -8,5 +8,35 @@ public class FizzBuzzMaker implements FizzBuzzMakerRequest {
 
     public FizzBuzzMaker(FizzBuzzMakerResponse response) {
         this.response = response;
+
+    }
+
+    @Override
+    public void execute() {
+
+    }
+    @Override
+    public void setFizzPhrase(String fizzPhrase) {
+
+    }
+
+    @Override
+    public void setBuzzPhrase(String buzzPhrase) {
+
+    }
+
+    @Override
+    public void setFizzDividend(String fizzDividend) {
+
+    }
+
+    @Override
+    public void setBuzzDividend(String buzzDividend) {
+
+    }
+
+    @Override
+    public void setInput(String input) {
+
     }
 }
