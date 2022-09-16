@@ -1,61 +1,55 @@
 package main.challenge.interactors;
 
 import com.google.common.base.Strings;
-import main.challenge.controllers.requests.FizzBuzzMakerRequest;
-import main.challenge.interactors.responses.FizzBuzzMakerResponse;
+import main.challenge.ChallengeFactory;
+import main.challenge.controllers.requests.FizzAndFiboMakerRequest;
+import main.challenge.gateways.GatewayRepository;
+import main.challenge.interactors.responses.FizzAndFiboMakerResponse;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class FizzBuzzMaker implements FizzBuzzMakerRequest {
-    private FizzBuzzMakerResponse response;
+public class FizzAndFiboMaker implements FizzAndFiboMakerRequest {
+    private FizzAndFiboMakerResponse response;
     private String fizzPhrase;
     private String buzzPhrase;
     private String fizzDividend;
     private String buzzDividend;
     private String input;
 
-    public FizzBuzzMaker(FizzBuzzMakerResponse response) {
+    public FizzAndFiboMaker(FizzAndFiboMakerResponse response) {
         this.response = Objects.requireNonNull(response);
     }
 
     @Override
     public void execute() {
+        GatewayRepository gatewayRepository = ChallengeFactory.gatewayFactory.createGatewayRepository();
+        List<String> dataFibonacci = gatewayRepository.retrieveData();
+
         if (isNotInteger(fizzDividend))
             response.fizzDividendIntegerError(fizzDividend);
         else if (isNotInteger(buzzDividend))
             response.buzzDividendIntegerError(buzzDividend);
-        else if (isNotInteger(input))
-            response.inputValueIntegerError(input);
         else if (isNotPositiveInteger(fizzDividend))
             response.fizzNotPositiveIntegerError(fizzDividend);
         else if (isNotPositiveInteger(buzzDividend))
             response.buzzNotPositiveIntegerError(buzzDividend);
-        else if (isNotPositiveInteger(input))
-            response.inputNotPositiveIntegerError(input);
         else
-            registerStrings();
+            response.displayFizzAndFibo(getFizzBuzzOutput(dataFibonacci));
     }
 
-    private void registerStrings() {
-        List<String> strings;
-        strings = getFizzBuzzOutput();
-        response.displayFizzBuzz(strings);
-    }
-
-    private List<String> getFizzBuzzOutput() {
+    private List<String> getFizzBuzzOutput(List<String> dataFibonacci) {
         List<String> strings = new ArrayList<>();
-        strings.add("0");
-        for (int i = 1; i <= Integer.parseInt(input); i++) {
-            if (isModule(i, fizzDividend) && isModule(i, buzzDividend))
+        for (String input : dataFibonacci) {
+            if (isModule(Integer.parseInt(input), fizzDividend) && isModule(Integer.parseInt(input), buzzDividend))
                 strings.add(fizzPhrase + buzzPhrase);
-            else if (isModule(i, fizzDividend))
+            else if (isModule(Integer.parseInt(input), fizzDividend))
                 strings.add(fizzPhrase);
-            else if (isModule(i, buzzDividend))
+            else if (isModule(Integer.parseInt(input), buzzDividend))
                 strings.add(buzzPhrase);
             else
-                strings.add(String.valueOf(i));
+                strings.add(input);
         }
 
         return strings;
@@ -110,10 +104,5 @@ public class FizzBuzzMaker implements FizzBuzzMakerRequest {
             buzzDividend = "5";
 
         this.buzzDividend = buzzDividend;
-    }
-
-    @Override
-    public void setInput(String input) {
-        this.input = input;
     }
 }
