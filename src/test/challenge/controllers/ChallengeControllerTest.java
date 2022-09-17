@@ -102,8 +102,8 @@ public class ChallengeControllerTest {
         InOrder inOrder = Mockito.inOrder(request);
         inOrder.verify(request).setFizzPhrase(properties.getProperty("fizzPhrase"));
         inOrder.verify(request).setBuzzPhrase(properties.getProperty("buzzPhrase"));
-        inOrder.verify(request).setFizzDividend(properties.getProperty("3"));
-        inOrder.verify(request).setBuzzDividend(properties.getProperty("5"));
+        inOrder.verify(request).setFizzDividend(properties.getProperty("fizzDividend"));
+        inOrder.verify(request).setBuzzDividend(properties.getProperty("buzzDividend"));
         inOrder.verify(request).execute();
     }
 }
