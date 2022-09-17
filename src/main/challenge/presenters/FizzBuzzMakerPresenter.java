@@ -61,7 +61,7 @@ public class FizzBuzzMakerPresenter implements FizzBuzzMakerResponse {
 
     @Override
     public void inputValueMissingError(String input) {
-        String error = "ERROR: n input is missing. Please enter integer value greater than zero";
+        String error = "ERROR: n input is missing in FIZZBUZZ. Please enter integer value greater than zero";
 
         view.showInputValueMissingError(error);
     }
