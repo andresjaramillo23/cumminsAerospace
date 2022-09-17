@@ -33,8 +33,8 @@ public class ChallengeController {
         FizzAndFiboMakerRequest request = ChallengeFactory.requestFactory.makeFizzAndFibo(response);
         request.setFizzPhrase(properties.getProperty("fizzPhrase"));
         request.setBuzzPhrase(properties.getProperty("buzzPhrase"));
-        request.setFizzDividend(properties.getProperty("3"));
-        request.setBuzzDividend(properties.getProperty("5"));
+        request.setFizzDividend(properties.getProperty("fizzDividend"));
+        request.setBuzzDividend(properties.getProperty("buzzDividend"));
         request.execute();
     }
 }

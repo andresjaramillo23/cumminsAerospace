@@ -16,4 +16,6 @@ public interface FizzBuzzMakerResponse {
     void buzzNotPositiveIntegerError(String s);
 
     void inputNotPositiveIntegerError(String s);
+
+    void inputValueMissingError(String input);
 }

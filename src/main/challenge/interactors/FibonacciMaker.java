@@ -23,7 +23,10 @@ public class FibonacciMaker implements FibonacciMakerRequest {
     @Override
     public void execute() {
         GatewayRepository gatewayRepository = ChallengeFactory.gatewayFactory.createGatewayRepository();
-        if (isNotInteger(x))
+
+        if (Strings.isNullOrEmpty(x))
+            response.xInputMissingError(x);
+        else if (isNotInteger(x))
             response.xInputIntegerError(x);
         else if (isNotInteger(y))
             response.yInputIntegerError(y);

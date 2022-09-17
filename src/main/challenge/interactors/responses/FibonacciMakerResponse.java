@@ -16,4 +16,6 @@ public interface FibonacciMakerResponse {
     void yNotPositiveIntegerError(String s);
 
     void zNotPositiveIntegerError(String s);
+
+    void xInputMissingError(String x);
 }

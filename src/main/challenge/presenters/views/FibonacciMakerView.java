@@ -16,4 +16,6 @@ public interface FibonacciMakerView {
     void showZNotPositiveIntegerError(String error);
 
     void displayFibonacci(List<String> fibonacci);
+
+    void showXInputMissingError(String error);
 }

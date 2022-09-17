@@ -22,7 +22,9 @@ public class FizzBuzzMaker implements FizzBuzzMakerRequest {
 
     @Override
     public void execute() {
-        if (isNotInteger(fizzDividend))
+        if (Strings.isNullOrEmpty(input))
+            response.inputValueMissingError(input);
+        else if (isNotInteger(fizzDividend))
             response.fizzDividendIntegerError(fizzDividend);
         else if (isNotInteger(buzzDividend))
             response.buzzDividendIntegerError(buzzDividend);

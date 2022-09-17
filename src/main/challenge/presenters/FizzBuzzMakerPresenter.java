@@ -58,4 +58,11 @@ public class FizzBuzzMakerPresenter implements FizzBuzzMakerResponse {
 
         view.showInputNotPositiveIntegerError(error);
     }
+
+    @Override
+    public void inputValueMissingError(String input) {
+        String error = "ERROR: n input is missing. Please enter integer value greater than zero";
+
+        view.showInputValueMissingError(error);
+    }
 }

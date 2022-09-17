@@ -16,4 +16,6 @@ public interface FizzBuzzMakerView {
     void showInputNotPositiveIntegerError(String error);
 
     void displayFizzBuzz(List<String> fizzBuzz);
+
+    void showInputValueMissingError(String error);
 }

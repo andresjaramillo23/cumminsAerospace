@@ -57,4 +57,11 @@ public class FibonacciMakerPresenter implements FibonacciMakerResponse {
 
         view.showZNotPositiveIntegerError(error);
     }
+
+    @Override
+    public void xInputMissingError(String x) {
+        String error = "ERROR: x input is missing. Please enter integer value greater than zero";
+
+        view.showXInputMissingError(error);
+    }
 }
