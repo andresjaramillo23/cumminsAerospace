@@ -6,9 +6,10 @@ import main.challenge.controllers.requests.FibonacciMakerRequest;
 import main.challenge.gateways.GatewayRepository;
 import main.challenge.interactors.responses.FibonacciMakerResponse;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class FibonacciMaker implements FibonacciMakerRequest {
     private FibonacciMakerResponse response;
@@ -22,11 +23,11 @@ public class FibonacciMaker implements FibonacciMakerRequest {
 
     @Override
     public void execute() {
+        //Call the gateway so the output can be registered
         GatewayRepository gatewayRepository = ChallengeFactory.gatewayFactory.createGatewayRepository();
 
-        if (Strings.isNullOrEmpty(x))
-            response.xInputMissingError(x);
-        else if (isNotInteger(x))
+        //Logic for evaluating the input from the user and having the corresponding response
+        if (isNotInteger(x))
             response.xInputIntegerError(x);
         else if (isNotInteger(y))
             response.yInputIntegerError(y);
@@ -39,25 +40,37 @@ public class FibonacciMaker implements FibonacciMakerRequest {
         else if (isNotPositiveInteger(z))
             response.zNotPositiveIntegerError(z);
         else
+            //if all the input is fine from the user then response to the output
             registerStrings(gatewayRepository);
     }
 
     private void registerStrings(GatewayRepository gatewayRepository) {
-        List<String> strings = new ArrayList<>();
-        for (int i = 1; i <= Integer.parseInt(x); i++)
-            strings.add(String.valueOf(getFibonacci(i)));
+        // calculate limit input from user as to how long is the series
+        int seriesLength = Integer.parseInt(x) + 1;
 
+        // collect string of the Fibonacci sequence
+        List<String> strings = IntStream.range(1, seriesLength)
+                .map(this::getFibonacci)
+                .boxed()
+                .map(Objects::toString)
+                .collect(Collectors.toList());
+
+        //Pass values into the response
         response.displayFibonacci(strings);
+
+        //save values to the gateway so they could be used for FizzBuzzNacci series
         gatewayRepository.registerFibonacci(strings);
     }
 
     int getFibonacci(int n) {
+        //Calculate phi number based on the series inputs
         double phi = (Integer.parseInt(y) + Math.sqrt(Integer.parseInt(y) + 2 +Integer.parseInt(z))) / Integer.parseInt(z);
         return (int) Math.round(Math.pow(phi, n)
                 / Math.sqrt(Integer.parseInt(y) + 2 +Integer.parseInt(z)));
     }
 
     private boolean isNotInteger(String value) {
+        //Evaluate if the input is not an integer
         boolean isInteger = false;
         try {
             Integer.parseInt(value);
@@ -73,12 +86,17 @@ public class FibonacciMaker implements FibonacciMakerRequest {
 
     @Override
     public void setX(String x) {
+        if (Strings.isNullOrEmpty(x))
+            // set the default output as 5 for the length of the series
+            x = "5";
+
         this.x = x;
     }
 
     @Override
     public void setY(String y) {
         if (Strings.isNullOrEmpty(y))
+            //set default value if user doesn't enter any number
             y = "1";
 
         this.y = y;
@@ -87,6 +105,7 @@ public class FibonacciMaker implements FibonacciMakerRequest {
     @Override
     public void setZ(String z) {
         if (Strings.isNullOrEmpty(z))
+            //set default value if user doesn't enter any number
             z = "2";
 
         this.z = z;

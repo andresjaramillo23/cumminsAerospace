@@ -6,7 +6,7 @@ import main.challenge.ui.ChallengeUI;
 public class Main {
     public static void main(String[] args) {
         initializeServices();
-        ChallengeUI challengeUI = new ChallengeUI();
+        new ChallengeUI();
     }
 
     private  static void initializeServices() {

@@ -21,6 +21,7 @@ public class ChallengeController {
         request.execute();
     }
 
+    //input from user vua the controller
     public void makeFibonacci(Properties properties, FibonacciMakerResponse response) {
         FibonacciMakerRequest request = ChallengeFactory.requestFactory.makeFibonacci(response);
         request.setX(properties.getProperty("x"));

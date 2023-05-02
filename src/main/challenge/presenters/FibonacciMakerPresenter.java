@@ -5,6 +5,7 @@ import main.challenge.presenters.views.FibonacciMakerView;
 
 import java.util.List;
 
+//All the different responses to present to the user
 public class FibonacciMakerPresenter implements FibonacciMakerResponse {
     private FibonacciMakerView view;
 
@@ -56,12 +57,5 @@ public class FibonacciMakerPresenter implements FibonacciMakerResponse {
         String error = "ERROR: z input " + z + " is not a positive integer value";
 
         view.showZNotPositiveIntegerError(error);
-    }
-
-    @Override
-    public void xInputMissingError(String x) {
-        String error = "ERROR: x input is missing in FIBONACCI. Please enter integer value greater than zero";
-
-        view.showXInputMissingError(error);
     }
 }
