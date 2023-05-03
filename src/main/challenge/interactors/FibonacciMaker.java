@@ -49,7 +49,7 @@ public class FibonacciMaker implements FibonacciMakerRequest {
         int seriesLength = Integer.parseInt(x) + 1;
 
         // collect string of the Fibonacci sequence
-        List<String> strings = IntStream.range(1, seriesLength)
+        List<String> strings = IntStream.range(0, seriesLength)
                 .map(this::getFibonacci)
                 .boxed()
                 .map(Objects::toString)
@@ -63,10 +63,17 @@ public class FibonacciMaker implements FibonacciMakerRequest {
     }
 
     int getFibonacci(int n) {
-        //Calculate phi number based on the series inputs
-        double phi = (Integer.parseInt(y) + Math.sqrt(Integer.parseInt(y) + 2 +Integer.parseInt(z))) / Integer.parseInt(z);
-        return (int) Math.round(Math.pow(phi, n)
-                / Math.sqrt(Integer.parseInt(y) + 2 +Integer.parseInt(z)));
+        // Initialize the first 2 values of the series based on the user's input
+        int initialValueY = Integer.parseInt(y);
+        int initialValueZ = Integer.parseInt(z);
+
+        //Perform recursion since the sequence is the sum of the previous 2 numbers
+        if (n == 0)
+            return initialValueY;
+        else if (n == 1)
+            return initialValueZ;
+        else
+            return getFibonacci(n - 1) + getFibonacci(n - 2);
     }
 
     private boolean isNotInteger(String value) {
@@ -81,14 +88,14 @@ public class FibonacciMaker implements FibonacciMakerRequest {
     }
 
     private boolean isNotPositiveInteger(String i) {
-        return Integer.parseInt(i) <= 0;
+        return Integer.parseInt(i) < 0;
     }
 
     @Override
     public void setX(String x) {
         if (Strings.isNullOrEmpty(x))
             // set the default output as 5 for the length of the series
-            x = "5";
+            x = "3";
 
         this.x = x;
     }
@@ -97,7 +104,7 @@ public class FibonacciMaker implements FibonacciMakerRequest {
     public void setY(String y) {
         if (Strings.isNullOrEmpty(y))
             //set default value if user doesn't enter any number
-            y = "1";
+            y = "0";
 
         this.y = y;
     }
@@ -106,7 +113,7 @@ public class FibonacciMaker implements FibonacciMakerRequest {
     public void setZ(String z) {
         if (Strings.isNullOrEmpty(z))
             //set default value if user doesn't enter any number
-            z = "2";
+            z = "1";
 
         this.z = z;
     }

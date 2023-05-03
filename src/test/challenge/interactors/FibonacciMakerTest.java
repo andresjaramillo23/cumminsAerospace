@@ -55,12 +55,13 @@ public class FibonacciMakerTest {
 
         List<String> actual = argumentCaptor.getValue();
 
-        Assert.assertEquals("1", actual.get(0));
+        Assert.assertEquals("0", actual.get(0));
         Assert.assertEquals("1", actual.get(1));
-        Assert.assertEquals("2", actual.get(2));
-        Assert.assertEquals("3", actual.get(3));
-        Assert.assertEquals("5", actual.get(4));
-        Assert.assertEquals("8", actual.get(5));
+        Assert.assertEquals("1", actual.get(2));
+        Assert.assertEquals("2", actual.get(3));
+        Assert.assertEquals("3", actual.get(4));
+        Assert.assertEquals("5", actual.get(5));
+        Assert.assertEquals("8", actual.get(6));
     }
 
     @Test
@@ -75,12 +76,13 @@ public class FibonacciMakerTest {
 
         List<String> actual = argumentCaptor.getValue();
 
-        Assert.assertEquals("1", actual.get(0));
-        Assert.assertEquals("1", actual.get(1));
-        Assert.assertEquals("1", actual.get(2));
-        Assert.assertEquals("2", actual.get(3));
-        Assert.assertEquals("3", actual.get(4));
-        Assert.assertEquals("5", actual.get(5));
+        Assert.assertEquals("2", actual.get(0));
+        Assert.assertEquals("3", actual.get(1));
+        Assert.assertEquals("5", actual.get(2));
+        Assert.assertEquals("8", actual.get(3));
+        Assert.assertEquals("13", actual.get(4));
+        Assert.assertEquals("21", actual.get(5));
+        Assert.assertEquals("34", actual.get(6));
     }
 
     @Test
