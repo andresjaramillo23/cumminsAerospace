@@ -95,7 +95,7 @@ public class FibonacciMaker implements FibonacciMakerRequest {
     public void setX(String x) {
         if (Strings.isNullOrEmpty(x))
             // set the default output as 5 for the length of the series
-            x = "3";
+            x = "4";
 
         this.x = x;
     }
